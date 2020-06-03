@@ -6,11 +6,11 @@ import androidx.lifecycle.MutableLiveData
 
 public class ReminderRepository(context: Context) {
 
-    private var reminderDao: ReminderDao
+    private var reminderDao: ReminderDao?
 
     init {
         val reminderRoomDatabase = ReminderRoomDatabase.getDatabase(context)
-        reminderDao = reminderRoomDatabase!!.reminderDao()
+        reminderDao = reminderRoomDatabase?.reminderDao()
     }
 
     fun getAllReminders() : LiveData<List<Reminder>> {
@@ -19,15 +19,15 @@ public class ReminderRepository(context: Context) {
 
 
     fun insertReminder(reminder: Reminder) {
-        reminderDao.insertReminder(reminder)
+        reminderDao?.insertReminder(reminder)
     }
 
     fun deleteReminder(reminder: Reminder) {
-        reminderDao.deleteReminder(reminder)
+        reminderDao?.deleteReminder(reminder)
     }
 
     fun updateReminder(reminder: Reminder) {
-        reminderDao.updateReminder(reminder)
+        reminderDao?.updateReminder(reminder)
     }
 
 }
